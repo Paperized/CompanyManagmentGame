@@ -3885,6 +3885,7 @@ GameObject:
   - component: {fileID: 8270046113830626819}
   - component: {fileID: 3437600204369241356}
   - component: {fileID: 8069005050774714325}
+  - component: {fileID: 7116014805665758000}
   m_Layer: 5
   m_Name: ProjectsList
   m_TagString: Untagged
@@ -3950,6 +3951,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7116014805665758000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641376987462646842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b88533f6cad6ce42b920bcf441d8f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabProjectSmallUI: {fileID: 4104105258438298058, guid: 9b09eda6d2822004f9e2d83c2cfaf8c1, type: 3}
+  titleDialogWithCounter: {fileID: 1092358806814238559}
+  container: {fileID: 1219346071876302854}
 --- !u!1 &8717436434238633731
 GameObject:
   m_ObjectHideFlags: 0

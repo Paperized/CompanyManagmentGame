@@ -23,9 +23,9 @@ namespace UI
             employeesRepository.OnAnalystsHiredChanged += EmployeesRepository_OnAnalystsHiredChanged;
             employeesRepository.OnDevsHiredChanged += EmployeesRepository_OnDevsHiredChanged;
 
-            CompanyRepository playerDataRepository = CompanyRepository.RequireInstance;
-            playerDataRepository.OnDataLoaded += PlayerDataRepository_OnDataLoaded;
-            playerDataRepository.OnMoneyChanged += PlayerDataRepository_OnMoneyChanged;
+            CompanyRepository companyDataRepository = CompanyRepository.RequireInstance;
+            companyDataRepository.OnDataLoaded += PlayerDataRepository_OnDataLoaded;
+            companyDataRepository.OnMoneyChanged += PlayerDataRepository_OnMoneyChanged;
         }
 
         private void OnDestroy()
@@ -35,9 +35,9 @@ namespace UI
             employeesRepository.OnAnalystsHiredChanged -= EmployeesRepository_OnAnalystsHiredChanged;
             employeesRepository.OnDevsHiredChanged -= EmployeesRepository_OnDevsHiredChanged;
 
-            CompanyRepository playerDataRepository = CompanyRepository.RequireInstance;
-            playerDataRepository.OnDataLoaded -= PlayerDataRepository_OnDataLoaded;
-            playerDataRepository.OnMoneyChanged -= PlayerDataRepository_OnMoneyChanged;
+            CompanyRepository companyDataRepository = CompanyRepository.RequireInstance;
+            companyDataRepository.OnDataLoaded -= PlayerDataRepository_OnDataLoaded;
+            companyDataRepository.OnMoneyChanged -= PlayerDataRepository_OnMoneyChanged;
         }
 
         private void PlayerDataRepository_OnMoneyChanged(long money)

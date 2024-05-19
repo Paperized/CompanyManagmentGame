@@ -17,7 +17,7 @@ namespace UI.Sub
 
         public void SetEmployeeData(EmployeeData employeeData)
         {
-            employeeName.gameObject.name = employeeData.id;
+            name = employeeData.id;
             employeeName.text = employeeData.name;
         }
     }

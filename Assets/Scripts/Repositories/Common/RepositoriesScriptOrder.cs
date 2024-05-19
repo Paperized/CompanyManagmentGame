@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Repositories.Common
 {
-
     public class RepositoriesScriptOrder
     {
         static RepositoriesScriptOrder() {

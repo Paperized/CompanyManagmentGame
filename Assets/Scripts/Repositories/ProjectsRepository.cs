@@ -29,6 +29,11 @@ namespace Repositories
         public event Action<List<ProjectData>> OnOngoingProjectsChanged;
         public event Action<ProjectData> OnOngoingProjectStarted;
 
+        private bool DoesIdExistsAnywhere(ProjectData projectData)
+        {
+            return data.onGoingProjects.Contains(projectData) || data.potentialProjects.Contains(projectData);
+        }
+
         /// <summary>
         /// Start a new ongoing project, can also be outside the potential projects
         /// </summary>
@@ -42,6 +47,20 @@ namespace Repositories
             OnOngoingProjectStarted?.Invoke(project);
             OnOngoingProjectsChanged?.Invoke(data.onGoingProjects);
 
+            return true;
+        }
+
+        /// <summary>
+        /// Start a new ongoing project, can also be outside the potential projects
+        /// </summary>
+        /// <param name="project">project</param>
+        /// <returns>true if the action had effect</returns>
+        public bool AddNewPotentialProject(ProjectData project)
+        {
+            if (DoesIdExistsAnywhere(project)) return false;
+
+            data.potentialProjects.Add(project);
+            OnPotentialProjectsChanged?.Invoke(data.potentialProjects);
             return true;
         }
 

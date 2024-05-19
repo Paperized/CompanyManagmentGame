@@ -16,7 +16,7 @@ namespace Data.Common
 
         public override bool Equals(object obj)
         {
-            return Equals((EmployeeData)obj);
+            return Equals(obj as DataEntity);
         }
 
         public override int GetHashCode()

@@ -37,6 +37,16 @@ namespace Repositories
         public event Action<EmployeeData> OnPotentialAnalystAccepted;
         public event Action<EmployeeData> OnPotentialEmployeeDeclined;
 
+        private bool DoesIdExistsInHired(EmployeeData employeeData)
+        {
+            return data.hiredDevs.Contains(employeeData) || data.hiredAnalysts.Contains(employeeData);
+        }
+
+        private bool DoesIdExistsAnywhere(EmployeeData employeeData)
+        {
+            return data.employeesCurriculum.Contains(employeeData) || DoesIdExistsInHired(employeeData);
+        }
+
         /// <summary>
         /// Add a potential emplyee, it does not have a specific role, the role is given when hired
         /// </summary>
@@ -44,7 +54,7 @@ namespace Repositories
         /// <returns>true if not already in potentials</returns>
         public bool AddPotentialEmployee(EmployeeData employeeData)
         {
-            if (data.employeesCurriculum.Contains(employeeData)) return false;
+            if (DoesIdExistsAnywhere(employeeData)) return false;
 
             data.employeesCurriculum.Add(employeeData);
             OnPotentialEmployeeChanged?.Invoke(data.employeesCurriculum);
@@ -60,6 +70,8 @@ namespace Repositories
         /// <returns>true if the method had effect</returns>
         private bool HireOrFireEmployee(EmployeeData employeeData, EmployeeType type, bool isHired)
         {
+            if(DoesIdExistsInHired(employeeData)) return false;
+
             List<EmployeeData> targetList = EmployeeType.Dev.Equals(type) ? data.hiredDevs : data.hiredAnalysts;
 
             if (isHired && !targetList.Contains(employeeData))

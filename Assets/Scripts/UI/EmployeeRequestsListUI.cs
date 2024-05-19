@@ -27,11 +27,11 @@ namespace UI
             employees.OnPotentialEmployeeChanged += Employees_OnPotentialEmployeeChanged;
         }
 
-        private void Employees_OnPotentialEmployeeChanged(List<Data.EmployeeData> obj)
+        private void Employees_OnPotentialEmployeeChanged(List<EmployeeData> obj)
         {
             List<Transform> potentialEmployee = container.GetChildren();
 
-            foreach (Data.EmployeeData employee in obj)
+            foreach (EmployeeData employee in obj)
             {
                 int transformIndex = potentialEmployee.FindIndex(x => x.name.Equals(employee.id));
 

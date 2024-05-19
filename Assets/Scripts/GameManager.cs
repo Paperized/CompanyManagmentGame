@@ -19,6 +19,10 @@ public class GameManager : SingletonBehaviour<GameManager>
     private float nextPotentialEmployee;
     private float nextPotentialEmployeeCurrent;
 
+    [SerializeField]
+    private float nextPotentialProject;
+    private float nextPotentialProjectCurrent;
+
     private List<IDataEventEmitter> dataEmitters;
     private List<IRepositoryLifecycle> dataHolders;
 
@@ -78,6 +82,22 @@ public class GameManager : SingletonBehaviour<GameManager>
                 empType = EmployeeType.Dev
             });
         }
+
+        nextPotentialProjectCurrent += Time.deltaTime;
+
+        if (nextPotentialProjectCurrent >= nextPotentialProject)
+        {
+            nextPotentialProjectCurrent -= nextPotentialProject;
+            ProjectsRepository.RequireInstance.AddNewPotentialProject(new Data.ProjectData
+            {
+                id = Guid.NewGuid().ToString(),
+                description = "Prova prova",
+                imageName = "test",
+                moneyGained = 0,
+                moneySpent = 0,
+                name = RandomProjectName()
+            });
+        }
     }
 
     public void StartGameplay()
@@ -108,6 +128,12 @@ public class GameManager : SingletonBehaviour<GameManager>
     private string RandomName()
     {
         List<string> list = new() { "Ivan", "Giorgio", "Pippo", "Gino", "Dino" };
+        return list[UnityEngine.Random.Range(0, list.Count)];
+    }
+
+    private string RandomProjectName()
+    {
+        List<string> list = new() { "Epic E-Commerce", "SteamV2", "NewTube" };
         return list[UnityEngine.Random.Range(0, list.Count)];
     }
 }
